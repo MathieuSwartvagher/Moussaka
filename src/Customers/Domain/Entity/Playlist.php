@@ -13,7 +13,7 @@ use Symfony\Component\Uid\UuidV4;
 class Playlist
 {
     #[
-        ORM\Column(type: 'uuid'),
+        ORM\Column,
         ORM\Id
     ]
     private string $id;

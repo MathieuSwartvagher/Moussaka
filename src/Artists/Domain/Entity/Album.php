@@ -13,7 +13,7 @@ use App\Artists\Domain\Entity\Artist;
 final class Album
 {
     #[
-        ORM\Column(type: 'uuid'),
+        ORM\Column,
         ORM\Id
     ]
     private string $id;

@@ -14,7 +14,7 @@ use App\Customers\Domain\Entity\User;
 class Artist
 {
     #[
-        ORM\Column(type: 'uuid'),
+        ORM\Column,
         ORM\Id
     ]
     private string $id;

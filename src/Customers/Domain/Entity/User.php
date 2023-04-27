@@ -38,6 +38,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
+    /**
+    * @var Collection<Artist>
+    */
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Artist::class, cascade: ['persist'])]
     private Collection $artists;
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Playlist::class, cascade: ['persist'])]
@@ -170,6 +173,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function getMyArtists(): Collection
+    {
+        return $this->artists;
+    }
     public function getFirstArtist(): Artist
     {
         return $this->artists->first();
