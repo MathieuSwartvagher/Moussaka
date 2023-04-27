@@ -68,7 +68,7 @@
                         <svg class="h-6 mr-4" viewBox="0 0 512 512" width="24" height="24" xmlns="http://www.w3.org/2000/svg">
                             <path d="M291.301 81.778l166.349 373.587-19.301 8.635-166.349-373.587zM64 463.746v-384h21.334v384h-21.334zM192 463.746v-384h21.334v384h-21.334z" fill="currentColor"></path>
                         </svg>
-                        Vos titres
+                        <a href="{{ path('app_album_index') }}">Vos albums</a>
                     </div>
                     {% endif %}
                 </div>
@@ -77,6 +77,8 @@
                         Playlists
                     </h3>
                     <div class="mb-3">
+                {{ render(controller('App\\Customers\\Infrastructure\\Symfony\\Controller\\PlaylistController::index')) }}
+
                         <div class="px-6 py-1 flex items-center text-sm text-white opacity-70 hover:opacity-100 hover:cursor-pointer uppercase tracking-widest">
                             <svg
                                     class="bg-green-700 fill-current h-8 m-4 p-1 text-black w-8"
@@ -85,7 +87,7 @@
                             >
                                 <path d="m28 20h-8v8h-4v-8h-8v-4h8v-8h4v8h8v4z"></path>
                             </svg>
-                            Create Playlist
+                            <a href="{{ path('app_playlist_new') }}">Créer une playlist</a>
                         </div>
                     </div>
                 </div>

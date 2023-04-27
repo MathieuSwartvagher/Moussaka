@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes albums {% endblock %}
+
+{% block body %}
+<main class="bg-white mx-auto p-8 md:p-12 my-10 rounded-lg shadow-2xl">
+<div class="mt-10">
+    <!-- song list header -->
+    <div class="flex text-gray-600">
+        <div class="p-2 w-full">Nom de l'album</div>
+        <div class="p-2 w-32 flex-shrink-0 text-right">Action</div>
+    </div>
+
+    {% for album in albums %}
+        <div class="flex border-b border-gray-800 hover:bg-green-700/25">
+            <div class="p-3 w-full">{{ album.name }}</div>
+                {% if is_granted('ROLE_ARTIST') %}
+    {{ include('album/_delete_form.html.twig') }}
+    {% endif %}
+        </div>
+    {% else %}
+        <div class="flex border-b border-gray-800 hover:bg-gray-800">
+            <p>Aucun album</p>
+        </div>
+    {% endfor %}
+
+{% if is_granted('ROLE_ARTIST') %}
+    <button class="bg-teal-700/70 hover:bg-teal-700 text-white font-bold py-2 rounded shadow-lg hover:shadow-xl transition duration-200 p-2 m-2"><a href="{{ path('app_album_new') }}">Créer un album</a></button>
+{% endif %}
+
+</div>
+</main>
+
+{% endblock %}

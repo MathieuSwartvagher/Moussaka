@@ -2,7 +2,10 @@
 
 namespace App\Customers\Domain\Entity;
 
+use App\Artists\Domain\Entity\Artist;
 use App\Customers\Domain\Repository\UserRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -35,6 +38,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Artist::class, cascade: ['persist'])]
+    private Collection $artists;
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Playlist::class, cascade: ['persist'])]
+    private Collection $playlists;
+
+    public function __construct(){
+        $this->artists =  new ArrayCollection();
+        $this->playlists = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -128,5 +140,38 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->isVerified = $isVerified;
 
         return $this;
+    }
+
+    public function getArtists(): Collection
+    {
+        return $this->artists;
+    }
+
+    public function setArtists(Collection $artists): self
+    {
+        $this->artists = $artists;
+
+        return $this;
+    }
+
+    public function addArtist(Artist $artist): void{
+        $this->artists->add($artist);
+    }
+
+    public function getPlaylists(): Collection
+    {
+        return $this->playlists;
+    }
+
+    public function setPlaylists(Collection $playlists): self
+    {
+        $this->playlists = $playlists;
+
+        return $this;
+    }
+
+    public function getFirstArtist(): Artist
+    {
+        return $this->artists->first();
     }
 }

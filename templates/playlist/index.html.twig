@@ -1,0 +1,19 @@
+<div class="mt-10">
+    <!-- song list header -->
+    <div class="flex text-gray-600">
+        <div class="p-2 w-full">Nom de la playlist</div>
+        <div class="p-2 w-32 flex-shrink-0 text-right">Action</div>
+    </div>
+
+    {% for playlist in playlists %}
+        <div class="flex border-b border-gray-800 hover:bg-green-700/25">
+            <div class="p-3 w-full">{{ playlist.name }}</div>
+                {{ include('playlist/_delete_form.html.twig') }}
+
+        </div>
+    {% else %}
+        <div class="flex border-b border-gray-800 hover:bg-gray-800">
+            <p>Aucune playlist</p>
+        </div>
+    {% endfor %}
+</div>

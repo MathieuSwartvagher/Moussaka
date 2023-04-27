@@ -3,6 +3,7 @@
 namespace App\Artists\Domain\Entity;
 
 use App\Artists\Domain\Repository\SongRepository;
+use App\Artists\Domain\Entity\Album;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 
@@ -22,6 +23,9 @@ class Song
 
     #[ORM\Column(length: 255)]
     private ?string $filePath = null;
+
+    #[ORM\ManyToOne(targetEntity: Album::class, inversedBy: 'songs')]
+    private Album $album;
 
     private ?File $file = null;
 
@@ -62,6 +66,18 @@ class Song
     public function setFilePath(string $filePath): self
     {
         $this->filePath = $filePath;
+
+        return $this;
+    }
+
+    public function getAlbum(): ?Album
+    {
+        return $this->album;
+    }
+
+    public function setAlbum(Album $album): self
+    {
+        $this->album = $album;
 
         return $this;
     }
