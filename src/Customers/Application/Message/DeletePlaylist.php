@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Artists\Application\Message;
+namespace App\Customers\Application\Message;
 
-final class DeleteAlbum
+final class DeletePlaylist
 {
     public function __construct(public string $id)
     {

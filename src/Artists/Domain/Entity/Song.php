@@ -25,7 +25,7 @@ class Song
     private ?string $filePath = null;
 
     #[ORM\ManyToOne(targetEntity: Album::class, inversedBy: 'songs')]
-    private Album $album;
+    private ?Album $album;
 
     private ?File $file = null;
 

@@ -23,4 +23,7 @@ framework:
             App\Artists\Application\Message\FindAlbumQuery: sync
             App\Artists\Application\Message\DeleteAlbum: sync
             App\Artists\Application\Message\ManageAlbum: sync
+            App\Customers\Application\Message\FindPlaylistQuery: sync
+            App\Customers\Application\Message\DeletePlaylist: sync
+            App\Customers\Application\Message\ManagePlaylist: sync
 

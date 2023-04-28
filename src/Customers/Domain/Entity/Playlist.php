@@ -26,7 +26,7 @@ class Playlist
     private Collection $songs;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'playlists')]
-    private ?User $user;
+    private User $user;
 
     public function __construct(){      
         $this->id = (string) (new UuidV4());

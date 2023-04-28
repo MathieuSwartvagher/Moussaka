@@ -15,6 +15,7 @@
         
         <div class="flex border-b border-gray-800 hover:bg-green-700/25">
             <div class="p-3 w-full">{{ album.name }}</div>
+            <div class="p-3 w-full">{{ album.artist.name|default('n/a') }}</div>
                 {% if is_granted('ROLE_ARTIST') %}
     {{ include('album/_delete_form.html.twig') }}
     {% endif %}

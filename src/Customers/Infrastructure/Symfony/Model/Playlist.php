@@ -1,23 +1,25 @@
 <?php
 
-namespace App\Artists\Infrastructure\Symfony\Model;
+namespace App\Customers\Infrastructure\Symfony\Model;
 
-use App\Artists\Domain\Entity\Artist;
+use App\Customers\Domain\Entity\User;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 
-final class Album
+final class Playlist
 {
     private string $id;
     private ?string $name = null;
-    private Artist $artist;
+
     /**
     * @var Collection<Song>
     */
     private Collection $songs;
 
-    public function __construct(){
-        $this->songs = new ArrayCollection();
+    private User $user;
+
+    public function __construct(){      
+        $this->songs =  new ArrayCollection();
     }
 
     public function getId(): string
@@ -37,18 +39,6 @@ final class Album
         return $this;
     }
 
-    public function getUser(): ?Artist
-    {
-        return $this->artist;
-    }
-
-    public function setUser(Artist $artist): self
-    {
-        $this->artist = $artist;
-
-        return $this;
-    }
-
     public function getSongs(): ?Collection
     {
         return $this->songs;
@@ -61,14 +51,14 @@ final class Album
         return $this;
     }
 
-    public function getArtist(): Artist
+    public function getUser(): ?User
     {
-        return $this->artist;
+        return $this->user;
     }
 
-    public function setArtist(Artist $artist): self
+    public function setUser(User $user): self
     {
-        $this->artist = $artist;
+        $this->user = $user;
 
         return $this;
     }
